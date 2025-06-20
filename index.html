@@ -14,7 +14,7 @@
       overflow-x: hidden;
     }
     .scene {
-      padding: 100px 20px;
+      padding: 80px 20px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -23,17 +23,18 @@
       position: relative;
     }
     h1 {
-      font-size: 3em;
+      font-size: 2.5em;
       animation: fadeIn 2s ease-in;
     }
     p {
-      font-size: 1.5em;
-      max-width: 700px;
+      font-size: 1.2em;
+      max-width: 90%;
       margin-top: 20px;
       animation: fadeInText 3s ease-in;
     }
     img {
-      width: 300px;
+      width: 90%;
+      max-width: 300px;
       height: auto;
       border-radius: 20px;
       margin-top: 30px;
@@ -63,8 +64,8 @@
     }
     .flower {
       position: absolute;
-      width: 40px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
       background-image: url('image2.png');
       background-size: contain;
       background-repeat: no-repeat;
@@ -85,6 +86,9 @@
       bottom: 60px;
       left: 10px;
       z-index: 1000;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
     }
     .music-controls button {
       background: #ff69b4;
@@ -94,7 +98,19 @@
       border-radius: 12px;
       box-shadow: 0 0 10px pink;
       cursor: pointer;
-      margin-right: 10px;
+      font-size: 0.9em;
+    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2em;
+      }
+      p {
+        font-size: 1em;
+      }
+      .music-controls button {
+        padding: 8px 12px;
+        font-size: 0.8em;
+      }
     }
   </style>
 </head>
@@ -109,8 +125,8 @@
   </div>
 
   <div class="music-controls">
-    <button onclick="document.getElementById('bg-music').play()">🎵 Play Music</button>
-    <button onclick="document.getElementById('bg-music').pause()">⏸️ Pause Music</button>
+    <button onclick="document.getElementById('bg-music').play()">🎵 Play</button>
+    <button onclick="document.getElementById('bg-music').pause()">⏸️ Pause</button>
   </div>
 
   <audio id="bg-music" loop>
