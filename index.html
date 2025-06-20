@@ -65,7 +65,7 @@
       position: absolute;
       width: 40px;
       height: 40px;
-      background-image: url('https://pngimg.com/uploads/flower/flower_PNG131.png');
+      background-image: url('https://i.ibb.co/2cTqXm8/flower.png');
       background-size: contain;
       background-repeat: no-repeat;
       animation: fall linear infinite;
@@ -73,6 +73,12 @@
     @keyframes fall {
       0% { transform: translateY(-100px) rotate(0deg); }
       100% { transform: translateY(110vh) rotate(360deg); }
+    }
+    audio {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      z-index: 1000;
     }
   </style>
 </head>
@@ -86,10 +92,10 @@
     <img src="image1.jpg" alt="Her Smile" />
   </div>
 
-  <iframe width="0" height="0" 
-    src="https://www.youtube.com/embed/B19FhKSRgnc?autoplay=1&loop=1&playlist=B19FhKSRgnc&mute=1"
-    frameborder="0" allow="autoplay" allowfullscreen style="display:none;">
-  </iframe>
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <script>
     const flowersContainer = document.querySelector('.flowers');
