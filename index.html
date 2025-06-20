@@ -60,14 +60,19 @@
       height: 100%;
       pointer-events: none;
       z-index: -1;
-      background: url('image1.jpg') no-repeat center center fixed;
-      background-size: cover;
-      opacity: 0.05;
-      animation: moveFlowers 60s linear infinite;
     }
-    @keyframes moveFlowers {
-      0% { background-position: 0 0; }
-      100% { background-position: 1000px 1000px; }
+    .flower {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-image: url('https://pngimg.com/uploads/flower/flower_PNG131.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
     }
   </style>
 </head>
@@ -86,5 +91,16 @@
     frameborder="0" allow="autoplay" allowfullscreen style="display:none;">
   </iframe>
 
+  <script>
+    const flowersContainer = document.querySelector('.flowers');
+    for (let i = 0; i < 25; i++) {
+      const flower = document.createElement('div');
+      flower.className = 'flower';
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = (5 + Math.random() * 10) + 's';
+      flower.style.animationDelay = Math.random() * 10 + 's';
+      flowersContainer.appendChild(flower);
+    }
+  </script>
 </body>
 </html>
