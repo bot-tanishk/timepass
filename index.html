@@ -75,6 +75,28 @@
       0% { transform: translateY(-100px) rotate(0deg); }
       100% { transform: translateY(110vh) rotate(360deg); }
     }
+    .starry {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      width: 2px;
+      height: 2px;
+      opacity: 0.8;
+      animation: twinkle 2s infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
     audio {
       position: fixed;
       bottom: 10px;
@@ -125,7 +147,8 @@
   </div>
 
   <div class="scene" style="background: linear-gradient(to right, #000000, #1a1a1a);">
-    <h1 style="color: #f9d71c">Starry Moments 🌌</h1>
+    <div class="starry" id="star-container"></div>
+    <h1 style="color: #f9d71c">Scene 2: Starry Moments 🌌</h1>
     <p style="color: #eee">Under a sky full of stars,<br>
     I whispered dreams the universe once kept quiet.<br>
     Your name became a constellation in my heart.</p>
@@ -151,6 +174,16 @@
       flower.style.animationDuration = (5 + Math.random() * 10) + 's';
       flower.style.animationDelay = Math.random() * 10 + 's';
       flowersContainer.appendChild(flower);
+    }
+
+    const starContainer = document.getElementById('star-container');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDuration = (1 + Math.random() * 3) + 's';
+      starContainer.appendChild(star);
     }
   </script>
 </body>
