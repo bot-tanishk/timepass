@@ -25,6 +25,15 @@
       justify-content: center;
       position: relative;
       scroll-snap-align: start;
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .scene.fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .scene.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     h1 {
       font-size: 2.5em;
@@ -171,7 +180,7 @@
 <body>
   <div class="flowers"></div>
 
-  <div class="scene" id="scene1">
+  <div class="scene fade-in" id="scene1">
     <h1>From the First Glance...</h1>
     <p>The world didn’t slow down... but somehow, you made me pause.<br>
     One glance — and I knew something inside me had changed.</p>
@@ -179,9 +188,9 @@
     <button class="scroll-btn" onclick="document.getElementById('scene2').scrollIntoView({behavior: 'smooth'})">⬇️</button>
   </div>
 
-  <div class="scene" id="scene2" style="background: linear-gradient(to right, #000000, #1a1a1a);">
+  <div class="scene fade-in" id="scene2" style="background: linear-gradient(to right, #000000, #1a1a1a);">
     <div class="starry" id="star-container"></div>
-    <h1 style="color: #f9d71c">Scene 2: Starry Moments 🌌</h1>
+    <h1 style="color: #f9d71c">Starry Moments 🌌</h1>
     <p style="color: #eee">Under a sky full of stars,<br>
     I whispered dreams the universe once kept quiet.<br>
     Your name became a constellation in my heart.</p>
@@ -189,15 +198,15 @@
     <button class="scroll-btn" onclick="document.getElementById('scene3').scrollIntoView({behavior: 'smooth'})">⬇️</button>
   </div>
 
-  <div class="scene" id="scene3" style="background: linear-gradient(to bottom, #090979, #00d4ff);">
-    <h1>Scene 3: Words I Couldn't Say ✨</h1>
+  <div class="scene fade-in" id="scene3" style="background: linear-gradient(to bottom, #090979, #00d4ff);">
+    <h1>Words I Couldn't Say ✨</h1>
     <div class="typewriter-text">And if I could, I’d pause time... just to stay in this moment with you forever.</div>
     <img src="image4.jpg" alt="Blossom Vibes" />
     <button class="scroll-btn" onclick="document.getElementById('scene4').scrollIntoView({behavior: 'smooth'})">⬇️</button>
   </div>
 
-  <div class="scene" id="scene4" style="background: radial-gradient(circle at top, #fbc2eb, #a6c1ee);">
-    <h1>Scene 4: Memory Lane 💭</h1>
+  <div class="scene fade-in" id="scene4" style="background: radial-gradient(circle at top, #fbc2eb, #a6c1ee);">
+    <h1>Memory Lane 💭</h1>
     <p>Every memory with you — a frame, a freeze in time, a smile that never fades.<br>
     Let’s walk through the lanes of laughter, softness, and stardust...</p>
     <img src="image5.jpg" alt="Our Memories" />
@@ -234,6 +243,18 @@
       star.style.animationDuration = (1 + Math.random() * 3) + 's';
       starContainer.appendChild(star);
     }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.scene').forEach(scene => {
+      observer.observe(scene);
+    });
   </script>
 </body>
 </html>
